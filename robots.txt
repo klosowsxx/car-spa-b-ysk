@@ -1,0 +1,9 @@
+# Car-Spa Błysk — cała strona jest do zaindeksowania.
+# Polityka prywatności ma własny znacznik noindex w HTML-u i celowo nie ma jej tutaj:
+# zablokowanie jej w robots.txt uniemożliwiłoby robotowi odczytanie tego znacznika.
+
+User-agent: *
+Allow: /
+
+# Po wyborze domeny dopisać pełny adres mapy strony, np.:
+# Sitemap: https://przyklad.pl/sitemap.xml
