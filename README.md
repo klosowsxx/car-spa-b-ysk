@@ -19,7 +19,7 @@ usługi są jedną podstroną zamiast jedenastu osobnych.
 | `galeria.html` | dwadzieścia siedem kadrów bez podpisów, z filtrami (nadwozie, wnętrze, felgi, lampy) i podglądem zdjęcia |
 | `o-nas.html` | Michał w pierwszej osobie, zakres pracy, sposób umawiania, pas z adresem, pas CTA |
 | `kontakt.html` | dane kontaktowe, godziny, **jedyny formularz na stronie**, mapa dojazdu |
-| `polityka-prywatnosci.html` | pełna klauzula z danymi firmy; została do wpisania nazwa hostingu, do tego czasu `noindex` |
+| `polityka-prywatnosci.html` | dziewięć rozdziałów, z hostingiem (Vercel) i przekazywaniem danych poza EOG; ma `noindex, follow` |
 
 Nawigacja jest w każdym pliku osobno, bo strona jest statyczna i nie ma etapu budowania.
 Pilnuje tego skrypt — patrz „Wspólny nagłówek i stopka" niżej.
@@ -145,9 +145,9 @@ same `alt`, których klient nie widzi.
 
 ## Do uzupełnienia przed publikacją
 
-1. **Nazwa firmy hostingowej** — dwa miejsca `<i class="fill">` w `polityka-prywatnosci.html`.
-   To jedyna luka blokująca, bo strona ma do tego czasu `noindex`. Decyzja po stronie
-   wykonawcy, nie klienta.
+1. ~~Nazwa firmy hostingowej~~ — **zamknięte**. Strona stoi na Vercelu, więc 18 września 2026
+   w polityce prywatności wpisany jest Vercel Inc., a poczta rozdzielona na Google Ireland
+   Limited. Klasa `.fill` znikła razem z wypełniaczami.
 2. ~~Zdjęcia z hali~~ — **zamknięte**. Michał przekazał 17 września 2026 folder
    `C:\Users\marcel\Desktop\car spa błysk` z 57 plikami (54 unikalne po odrzuceniu
    duplikatów). Wszystkie zdjęcia na stronie pochodzą teraz stamtąd, żadne nie jest ze stocku.
@@ -163,8 +163,8 @@ same `alt`, których klient nie widzi.
    oraz w `openingHoursSpecification` w danych strukturalnych.
 6. **Adres rejestrowy** — przyjęty taki sam jak adres hali. Warto sprawdzić z wpisem
    w CEIDG, bo tam nazwa firmy zwykle zawiera też imię i nazwisko właściciela.
-7. **Data w polityce prywatności** — ustawiona na 17 września 2026, do podmiany
-   na faktyczną datę uruchomienia.
+7. ~~Data w polityce prywatności~~ — **zamknięte**, ustawiona na 18 września 2026,
+   czyli dzień uruchomienia na Vercelu.
 8. **Formularz** — nie wysyła wiadomości. Odbiorcą ma być `carspablysk@gmail.com`;
    adres jest zapisany w komentarzu przy formularzu w `kontakt.html` (to jedyne
    miejsce, gdzie formularz stoi).
@@ -435,9 +435,23 @@ Strona **nie zapisuje żadnych własnych ciasteczek** ani danych w pamięci prze
 sprawdzone: puste `document.cookie`, `localStorage` i `sessionStorage`, zero analityki
 i pikseli. Nie ma więc banera ze zgodą.
 
-Jedyny element, który coś zapisuje na urządzeniu, to **ramka Map Google** na `kontakt.html`.
-Ładuje się od razu przy wejściu na podstronę, więc formalnie zapis następuje bez zgody,
-której wymaga art. 173 Prawa komunikacji elektronicznej. **To świadoma decyzja Marcela
+Sprawdzone ponownie 18 września 2026, już na działającej stronie: własna domena nie ustawia
+ani jednego ciasteczka, `localStorage`, `sessionStorage` i IndexedDB są puste, Vercel też
+nic nie dokłada. Strona odpytuje cztery obce serwery: `fonts.googleapis.com`,
+`fonts.gstatic.com`, `cdn.jsdelivr.net` i `www.google.com` (mapa). Fonty i jsDelivr
+niczego na urządzeniu nie zapisują ani nie odczytują — wychodzi do nich sam adres IP,
+co jest sprawą RODO, a nie przepisu o ciasteczkach, i baneru nie wymaga.
+
+Sporna jest tylko **ramka Map Google** na `kontakt.html`. Wczytanie samego adresu ramki
+w czystej przeglądarce nie ustawiło żadnego ciasteczka widocznego dla skryptu (Google
+przekierowuje na `google.com/maps/embed`), ale ciasteczek `HttpOnly` skrypt nie widzi,
+więc nie da się tego stwierdzić na pewno. Istota jest zresztą inna: przepis obejmuje nie
+tylko zapisywanie, ale i **dostęp** do informacji już przechowywanej na urządzeniu,
+a wczytanie ramki z `www.google.com` sprawia, że przeglądarka wysyła Google'owi
+ciasteczka, które odwiedzający już ma. Wymaga tego zgody art. 398 Prawa komunikacji
+elektronicznej (treścią ten sam co dawny art. 173 Prawa telekomunikacyjnego).
+Właściwym rozwiązaniem byłaby zgoda przed wczytaniem mapy, a nie baner o ciasteczkach —
+baner „ta strona używa cookies" byłby tu po prostu nieprawdą. **To świadoma decyzja Marcela
 z 17 września 2026.** Wersja z mapą włączaną na kliknięcie była zrobiona i przetestowana,
 po czym została cofnięta — ryzyko dla jednoosobowej myjni uznane za nieistotne
 (kontrole w tej sprawie są wyłącznie na skargę, a nie z urzędu), a mapa widoczna od razu
@@ -448,14 +462,41 @@ zapamiętywania wyboru.
 Jeśli kiedyś dojdzie Google Analytics albo Pixel Facebooka, baner będzie konieczny
 niezależnie od mapy — wtedy mapa wejdzie pod to samo okienko.
 
-Formularz ma pod przyciskiem `.form__rodo` — jedno zdanie o tym, jakie dane zbiera,
-z linkiem do polityki. Art. 13 RODO każe informować w miejscu zbierania danych, nie tylko
-w osobnej zakładce. **Checkboxa „wyrażam zgodę" świadomie nie ma**: podstawą jest art. 6
+Formularz ma pod przyciskiem `.form__rodo` — odnośnik „Jak przetwarzam Twoje dane"
+prowadzący do polityki. Art. 13 RODO każe informować w miejscu zbierania danych, nie tylko
+w osobnej zakładce; sam odnośnik to spełnia w minimalnym zakresie, ale **warstwowa klauzula
+działa lepiej**, czyli jedno zdanie o tym, kto jest administratorem i po co bierze numer,
+plus ten odnośnik pod spodem. **Checkboxa „wyrażam zgodę" świadomie nie ma**: podstawą jest art. 6
 ust. 1 lit. b RODO (działania przed zawarciem umowy na żądanie), a UODO odradza pytanie
 o zgodę, gdy ma się inną podstawę.
 
-Co zostaje do zrobienia po stronie prawnej: nazwa hostingu w polityce (dwa miejsca)
-oraz dopisanie obsługi formularza do odbiorców danych, kiedy formularz zacznie wysyłać.
+**Przekazywanie poza EOG** opisuje rozdział 7 polityki. Vercel Inc. i Google LLC są aktywnymi
+uczestnikami EU-U.S. Data Privacy Framework — sprawdzone 18 września 2026 w rejestrze na
+dataprivacyframework.gov — więc podstawą jest art. 45 RODO, decyzja Komisji z 10 lipca 2023.
+**Przy każdej aktualizacji polityki sprawdź ten status ponownie**, bo uczestnictwo można
+stracić i wtedy podstawa się zmienia na standardowe klauzule umowne. jsDelivr nie ma
+deklarowanej podstawy — jego serwery stoją w wielu krajach i tyle polityka mówi.
+
+Co zostaje po stronie prawnej:
+
+1. **Pełna nazwa firmy z CEIDG** w stopce i w klauzuli administratora. Przy jednoosobowej
+   działalności firmą jest imię i nazwisko właściciela z dodatkiem, więc art. 5 ustawy
+   o świadczeniu usług drogą elektroniczną chce „Michał <nazwisko> CAR-SPA BŁYSK",
+   a nie samego „CAR-SPA BŁYSK". Brakuje nazwiska.
+2. **Dopisanie obsługi formularza** do odbiorców danych, kiedy formularz zacznie wysyłać.
+3. Rozważenie **warstwowej klauzuli przy formularzu** zamiast samego odnośnika.
+
+Czego świadomie nie ma i nie trzeba: banera cookie, checkboxa zgody przy formularzu,
+regulaminu (art. 8 ustawy o świadczeniu usług drogą elektroniczną da się naciągnąć
+na formularz kontaktowy, ale przy stronie wizytówce nikt tego nie robi ani nie egzekwuje),
+informacji o odstąpieniu od umowy (nic nie jest sprzedawane online). Europejski akt
+o dostępności nie obejmuje tej strony — mikroprzedsiębiorca i brak handlu elektronicznego.
+Ustawa o dostępności cyfrowej dotyczy wyłącznie sektora publicznego.
+
+**Najprostszy sposób na pozbycie się większości tych pytań:** ściągnąć trzy biblioteki
+z jsDelivr i dwa kroje z Google Fonts na własny serwer. Wtedy jedynym obcym połączeniem
+zostaje mapa, a strona przestaje wysyłać adres IP odwiedzającego komukolwiek poza Vercelem.
+Przy okazji strona ładuje się szybciej, bo znika kilka połączeń do obcych domen.
 
 ## SEO
 

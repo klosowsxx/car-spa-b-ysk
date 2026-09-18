@@ -137,13 +137,6 @@ html.anim .curtain i{ transform:scaleY(1); transform-origin:top; }
 .prose dt{ color:var(--white); font-weight:600; margin-top:var(--s2); }
 .prose dd{ margin:.2rem 0 0; color:var(--muted); }
 
-/* miejsce na dane, których jeszcze nie ma — widoczne, żeby nikt
-   nie opublikował strony z nieuzupełnioną polityką prywatności */
-.fill{
-  font-style:normal; color:var(--gold); padding:.05em .35em;
-  background:rgba(245,182,71,.12); border-bottom:1px dashed var(--gold);
-}
-
 /* ── podstrona usług ───────────────────────────────────── */
 .grp{ margin-bottom:var(--s7); }
 .grp:last-child{ margin-bottom:0; }
