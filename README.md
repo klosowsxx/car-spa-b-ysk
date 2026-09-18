@@ -165,9 +165,16 @@ same `alt`, których klient nie widzi.
    w CEIDG, bo tam nazwa firmy zwykle zawiera też imię i nazwisko właściciela.
 7. **Data w polityce prywatności** — ustawiona na 17 września 2026, do podmiany
    na faktyczną datę uruchomienia.
-8. **Formularz** — nie wysyła wiadomości, pokazuje komunikat. Odbiorcą ma być
-   `carspablysk@gmail.com`; adres jest zapisany w komentarzu przy formularzu
-   w `kontakt.html` (to jedyne miejsce, gdzie formularz stoi).
+8. **Formularz** — nie wysyła wiadomości. Odbiorcą ma być `carspablysk@gmail.com`;
+   adres jest zapisany w komentarzu przy formularzu w `kontakt.html` (to jedyne
+   miejsce, gdzie formularz stoi).
+   **18 września 2026 zniknął komunikat ze stopki**, który uprzedzał o tym na każdej
+   podstronie — Marcel kazał go usunąć. Ostrzeżenie zostało już tylko w jednym miejscu:
+   po wysłaniu formularza (`Formularz nie jest jeszcze podpięty pod skrzynkę`,
+   funkcja `formularz()` w `js/app.js`). Do tego czasu `kontakt.html` i `o-nas.html`
+   nadal obiecują „oddzwonię z terminem", więc **do publikacji trzeba albo podpiąć
+   formularz, albo poprawić te zdania** — inaczej klient wypełnia pięć pól i dopiero
+   po kliknięciu dowiaduje się, że nic nie poszło.
 9. **Wizytówka Google** — sprawdzone 17 września 2026, firma jej nie ma. Trzema
    zapytaniami w Mapach (nazwa, „detailing myjnia Milicz", adres) nie da się jej znaleźć;
    pod Krotoszyńską 6 Google zna tylko biuro geodezyjne. Bez wizytówki nie ma z czego
