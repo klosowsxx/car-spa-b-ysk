@@ -16,7 +16,7 @@ usługi są jedną podstroną zamiast jedenastu osobnych.
 | `index.html` | hero z preloaderem, czternaście kafli usług z cenami, „Jak pracuję" (cztery atuty), pas z adresem, pozioma galeria realizacji, „Jak umówić auto", skrót kontaktu bez formularza |
 | `uslugi.html` | czternaście usług w czterech grupach (nadwozie i lakier 6, powłoki ceramiczne 4, wnętrze 2, lampy i dach 2), każda z ceną wyjściową, opisem, listą „co wchodzi w zakres" i zdjęciem; kotwice `#mycie`, `#dekontaminacja`, `#polerowanie-1`, `#polerowanie-2`, `#odswiezenie`, `#wosk`, `#lampy`, `#cabrio`, `#ceramika-roczna`, `#ceramika-3lata`, `#ceramika-szyby`, `#ceramika-felgi`, `#wnetrze`, `#wnetrze-fotele` |
 | `cennik.html` | czternaście pozycji w czterech grupach, jeden do jednego z podstroną usług; boczna kolumna „co wpływa na cenę" i „jak dostać wycenę" |
-| `galeria.html` | dwadzieścia siedem kadrów bez podpisów, z filtrami (nadwozie, wnętrze, felgi, lampy) i podglądem zdjęcia |
+| `galeria.html` | pięćdziesiąt kadrów bez podpisów (nadwozie 28, wnętrze 13, felgi 5, lampy 4), z filtrami i podglądem zdjęcia |
 | `o-nas.html` | Michał w pierwszej osobie, zakres pracy, sposób umawiania, pas z adresem, pas CTA |
 | `kontakt.html` | dane kontaktowe, godziny, **jedyny formularz na stronie**, mapa dojazdu |
 | `polityka-prywatnosci.html` | dziewięć rozdziałów, z hostingiem (Vercel) i przekazywaniem danych poza EOG; ma `noindex, follow` |
